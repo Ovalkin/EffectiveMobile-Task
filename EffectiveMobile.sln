@@ -2,6 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Web.Api", "EffectiveMobile.Web.Api\EffectiveMobile.Web.Api.csproj", "{79B20625-0684-4A01-812B-2B08CAF0ECC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Common.DTOs", "EffectiveMobile.Common.DTOs\EffectiveMobile.Common.DTOs.csproj", "{2DD38413-3948-4C52-87E2-ECA2A079D2D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Common.EntityModel.Sqlite", "EffectiveMobile.Common.EntityModel.Sqlite\EffectiveMobile.Common.EntityModel.Sqlite.csproj", "{3868878A-F067-46DD-85BF-B6DD649F2C4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Repositories", "EffectiveMobile.Repositories\EffectiveMobile.Repositories.csproj", "{7AF6092B-65C5-47DF-A9EE-8B662DA048FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Services", "EffectiveMobile.Services\EffectiveMobile.Services.csproj", "{433BF4DA-324F-4FB5-AE11-F55BA38B8000}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +20,21 @@ Global
 		{79B20625-0684-4A01-812B-2B08CAF0ECC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79B20625-0684-4A01-812B-2B08CAF0ECC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79B20625-0684-4A01-812B-2B08CAF0ECC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD38413-3948-4C52-87E2-ECA2A079D2D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD38413-3948-4C52-87E2-ECA2A079D2D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD38413-3948-4C52-87E2-ECA2A079D2D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD38413-3948-4C52-87E2-ECA2A079D2D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3868878A-F067-46DD-85BF-B6DD649F2C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3868878A-F067-46DD-85BF-B6DD649F2C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3868878A-F067-46DD-85BF-B6DD649F2C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3868878A-F067-46DD-85BF-B6DD649F2C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF6092B-65C5-47DF-A9EE-8B662DA048FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF6092B-65C5-47DF-A9EE-8B662DA048FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF6092B-65C5-47DF-A9EE-8B662DA048FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF6092B-65C5-47DF-A9EE-8B662DA048FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

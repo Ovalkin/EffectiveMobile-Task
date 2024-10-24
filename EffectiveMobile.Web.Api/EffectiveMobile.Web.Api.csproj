@@ -11,4 +11,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EffectiveMobile.Common.DTOs\EffectiveMobile.Common.DTOs.csproj" />
+      <ProjectReference Include="..\EffectiveMobile.Common.EntityModel.Sqlite\EffectiveMobile.Common.EntityModel.Sqlite.csproj" />
+      <ProjectReference Include="..\EffectiveMobile.Services\EffectiveMobile.Services.csproj" />
+    </ItemGroup>
+
 </Project>
