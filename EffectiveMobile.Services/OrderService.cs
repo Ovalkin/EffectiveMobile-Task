@@ -1,3 +1,4 @@
+using System.Text;
 using EffectiveMobile.Common.DTOs;
 using EffectiveMobile.Common.EntityModel.Sqlite.Entities;
 using EffectiveMobile.Repositories.Interfaces;
@@ -24,5 +25,25 @@ public class OrdersService(IOrdersRepository repo) : IOrdersService
                         && o.DeliveryTime <= firstDeliveryDateTime.AddMinutes(30))
             .OrderBy(o => o.DeliveryTime)
             .AsEnumerable();
+    }
+
+    public async Task WriteToFileAsync(List<RetrievedOrderDto> orders, string path)
+    {
+        StringBuilder fileNameBuilder = new StringBuilder();
+        fileNameBuilder.Append("Orders ");
+        fileNameBuilder.Append(orders.First().DeliveryTime.ToString("yyyy-MM-dd HH:mm:ss"));
+        fileNameBuilder.Append('-');
+        fileNameBuilder.Append(orders.Last().DeliveryTime.ToString("yyyy-MM-dd HH:mm:ss"));
+        fileNameBuilder.Append(".txt");
+        string fileName = fileNameBuilder.ToString();
+        using (var writer = new StreamWriter(Path.Combine(path, fileName)))
+        {
+            await writer.WriteLineAsync($"Доставка по району: {orders.First().CityDistrict}\n");
+            foreach (var order in orders)
+            {
+                await writer.WriteLineAsync(
+                    $"Номер заказа: {order.Id}, Вес: {order.Weight}КГ, Время доставки: {order.DeliveryTime}");
+            }
+        }
     }
 }

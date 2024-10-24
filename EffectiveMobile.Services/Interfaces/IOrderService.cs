@@ -6,4 +6,5 @@ public interface IOrdersService
 {
     Task<CreateOrderDto?> CreateOrder(CreateOrderDto dto);
     Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict, DateTime firstDeliveryDateTime);
+    Task WriteToFileAsync(List<RetrievedOrderDto> orders, string path);
 }

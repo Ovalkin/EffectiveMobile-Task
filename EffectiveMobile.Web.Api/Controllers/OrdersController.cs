@@ -1,3 +1,4 @@
+using System.Text;
 using EffectiveMobile.Common.DTOs;
 using EffectiveMobile.Common.EntityModel.Sqlite;
 using EffectiveMobile.Common.EntityModel.Sqlite.Entities;
@@ -20,8 +21,10 @@ public class OrdersController(IOrdersService service) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetFiltered(string cityDistrict, DateTime firstDeliveryDateTime)
+    public async Task<IActionResult> GetFiltered(string cityDistrict, DateTime firstDeliveryDateTime, string path)
     {
-        return Ok(await service.GetFilteredOrders(cityDistrict, firstDeliveryDateTime));
+        var orders = await service.GetFilteredOrders(cityDistrict, firstDeliveryDateTime);
+        service.WriteToFileAsync(orders.ToList()!, path);
+        return Ok(orders);
     }
 }
