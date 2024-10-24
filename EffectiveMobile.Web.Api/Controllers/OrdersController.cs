@@ -20,10 +20,10 @@ public class OrdersController(IOrdersService service) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetFiltered(string? cityDistrict, DateTime? dateTime)
+    public async Task<IActionResult> GetFiltered(string? cityDistrict, DateTime? firstDeliveryDateTime)
     {
-        if (cityDistrict != null && dateTime != null)
-            return Ok(await service.GetFilteredOrders(cityDistrict, (DateTime)dateTime));
+        if (cityDistrict != null && firstDeliveryDateTime != null)
+            return Ok(await service.GetFilteredOrders(cityDistrict, (DateTime)firstDeliveryDateTime));
         return Ok(await service.GetFilteredOrders());
     }
 }

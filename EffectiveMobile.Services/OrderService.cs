@@ -27,17 +27,15 @@ public class OrdersService(IOrdersRepository repo) : IOrdersService
         return filteredOrders;
     }
 
-    public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict, DateTime dateTime)
+    public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict,
+        DateTime firstDeliveryDateTime)
     {
         var orders = RetrievedOrderDto.CreateDtos(await repo.RetrieveAllAsync());
-        var filteredOrders = orders
+        return orders
             .Where(o => o.CityDistrict == cityDistrict)
-            .Where(o => o.DeliveryTime >= dateTime)
+            .Where(o => o.DeliveryTime >= firstDeliveryDateTime
+                        && o.DeliveryTime <= firstDeliveryDateTime.AddMinutes(30))
             .OrderBy(o => o.DeliveryTime)
-            .ToList();
-        DateTime firstOrderDeliveryTime = filteredOrders.First().DeliveryTime;
-        return filteredOrders
-            .Where(o => o.DeliveryTime <= firstOrderDeliveryTime.AddMinutes(30))
             .AsEnumerable();
     }
 }
