@@ -14,19 +14,6 @@ public class OrdersService(IOrdersRepository repo) : IOrdersService
         return order != null ? CreateOrderDto.CreateDto(order) : null;
     }
 
-    public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders()
-    {
-        var orders = RetrievedOrderDto.CreateDtos(await repo.RetrieveAllAsync());
-        var filteredOrders = orders
-            .GroupBy(o => o.CityDistrict)
-            .OrderByDescending(o => o.Count())
-            .First()
-            .Select(o => o)
-            .AsEnumerable()
-            .OrderBy(o => o.DeliveryTime);
-        return filteredOrders;
-    }
-
     public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict,
         DateTime firstDeliveryDateTime)
     {
