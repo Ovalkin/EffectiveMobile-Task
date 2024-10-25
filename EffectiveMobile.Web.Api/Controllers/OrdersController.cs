@@ -1,7 +1,4 @@
-using System.Text;
 using EffectiveMobile.Common.DTOs;
-using EffectiveMobile.Common.EntityModel.Sqlite;
-using EffectiveMobile.Common.EntityModel.Sqlite.Entities;
 using EffectiveMobile.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,8 +20,11 @@ public class OrdersController(IOrdersService service) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetFiltered(string cityDistrict, DateTime firstDeliveryDateTime, string path)
     {
-        var orders = await service.GetFilteredOrders(cityDistrict, firstDeliveryDateTime);
-        service.WriteToFileAsync(orders.ToList()!, path);
+        var orders = (await service.GetFilteredOrders(cityDistrict, firstDeliveryDateTime))
+            .ToList();
+        if (orders.First() == null)
+            return BadRequest("В ближайшие 30 минут от указанного времени нет заказов в указанном районе!");
+        _ = service.WriteToFileAsync(orders!, path);
         return Ok(orders);
     }
 }
