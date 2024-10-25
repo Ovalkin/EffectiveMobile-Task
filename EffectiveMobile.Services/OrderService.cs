@@ -9,13 +9,13 @@ namespace EffectiveMobile.Services;
 
 public class OrdersService(IOrdersRepository repo) : IOrdersService
 {
-    public async Task<CreateOrderDto?> CreateOrder(CreateOrderDto dto)
+    public async Task<CreateOrderDto?> CreateOrderAsync(CreateOrderDto dto)
     {
         Order? order = await repo.CreateAsync(CreateOrderDto.CreateEntity(dto));
         return order != null ? CreateOrderDto.CreateDto(order) : null;
     }
 
-    public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict,
+    public async Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrdersAsync(string cityDistrict,
         DateTime firstDeliveryDateTime)
     {
         var orders = RetrievedOrderDto.CreateDtos(await repo.RetrieveAllAsync());

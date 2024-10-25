@@ -4,7 +4,7 @@ namespace EffectiveMobile.Services.Interfaces;
 
 public interface IOrdersService
 {
-    Task<CreateOrderDto?> CreateOrder(CreateOrderDto dto);
-    Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrders(string cityDistrict, DateTime firstDeliveryDateTime);
+    Task<CreateOrderDto?> CreateOrderAsync(CreateOrderDto dto);
+    Task<IEnumerable<RetrievedOrderDto?>> GetFilteredOrdersAsync(string cityDistrict, DateTime firstDeliveryDateTime);
     Task WriteToFileAsync(List<RetrievedOrderDto> orders, string path);
 }

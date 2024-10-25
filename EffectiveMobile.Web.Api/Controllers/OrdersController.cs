@@ -12,7 +12,7 @@ public class OrdersController(IOrdersService service) : ControllerBase
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto orderDto)
     {
         if (!ModelState.IsValid) return BadRequest();
-        var created = await service.CreateOrder(orderDto);
+        var created = await service.CreateOrderAsync(orderDto);
         if (created == null) return BadRequest();
         return Ok(created);
     }
@@ -20,7 +20,7 @@ public class OrdersController(IOrdersService service) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetFiltered(string cityDistrict, DateTime firstDeliveryDateTime, string path)
     {
-        var orders = (await service.GetFilteredOrders(cityDistrict, firstDeliveryDateTime))
+        var orders = (await service.GetFilteredOrdersAsync(cityDistrict, firstDeliveryDateTime))
             .ToList();
         if (orders.First() == null)
             return BadRequest("В ближайшие 30 минут от указанного времени нет заказов в указанном районе!");
