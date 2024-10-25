@@ -7,10 +7,12 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var logPath = builder.Configuration["AppSettings:DeliveryLogPath"]!;
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .Enrich.FromLogContext()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File( logPath+"/deliveryLog-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Services.AddEndpointsApiExplorer();

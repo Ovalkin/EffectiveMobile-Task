@@ -17,7 +17,7 @@ public class RetrievedOrderDto
         List<RetrievedOrderDto> dtos = [];
         foreach (var order in orders)
         {
-            if (order is null) return Enumerable.Empty<RetrievedOrderDto>();
+            if (order is null) return [];
             dtos.Add(new RetrievedOrderDto
             {
                 Id = order.Id,

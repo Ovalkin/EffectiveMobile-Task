@@ -28,7 +28,7 @@ public class OrdersService(IOrdersRepository repo, ILogger<OrdersService> logger
             .AsEnumerable();
     }
 
-    public async Task WriteToFileAsync(List<RetrievedOrderDto> orders, string path)
+    public async Task<string> WriteToFileAsync(List<RetrievedOrderDto> orders, string path)
     {
         string fileName = GenerateFileName(orders.First(), orders.Last());
         fileName = Path.Combine(path, fileName);
@@ -53,6 +53,7 @@ public class OrdersService(IOrdersRepository repo, ILogger<OrdersService> logger
         {
             logger.LogError("Запись в файл была прервана: " + e.Message);
         }
+        return fileName;
     }
 
     private static string GenerateFileName(RetrievedOrderDto firstOrder, RetrievedOrderDto lastOrder)
@@ -60,7 +61,7 @@ public class OrdersService(IOrdersRepository repo, ILogger<OrdersService> logger
         StringBuilder fileNameBuilder = new StringBuilder();
         fileNameBuilder.Append("Orders ");
         fileNameBuilder.Append(firstOrder.DeliveryTime.ToString("yyyy-MM-dd HH:mm:ss"));
-        fileNameBuilder.Append('-');
+        fileNameBuilder.Append(" - ");
         fileNameBuilder.Append(lastOrder.DeliveryTime.ToString("yyyy-MM-dd HH:mm:ss"));
         fileNameBuilder.Append(".txt");
         return fileNameBuilder.ToString();
