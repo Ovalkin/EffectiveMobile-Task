@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Repositorie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Services", "EffectiveMobile.Services\EffectiveMobile.Services.csproj", "{433BF4DA-324F-4FB5-AE11-F55BA38B8000}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectiveMobile.Tests.Integration", "EffectiveMobile.Tests.Integration\EffectiveMobile.Tests.Integration.csproj", "{579EE37A-E484-40AD-B76A-0A28B00AC3AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{433BF4DA-324F-4FB5-AE11-F55BA38B8000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579EE37A-E484-40AD-B76A-0A28B00AC3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579EE37A-E484-40AD-B76A-0A28B00AC3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579EE37A-E484-40AD-B76A-0A28B00AC3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579EE37A-E484-40AD-B76A-0A28B00AC3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
