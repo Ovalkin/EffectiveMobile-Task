@@ -3,9 +3,9 @@ using EffectiveMobile.Common.EntityModel.Sqlite.Entities;
 
 namespace EffectiveMobile.Tests.Integration.Helpers;
 
-public class SeadDataHelper(EffectiveMobileContext context)
+public static class SeadDataHelper
 {
-    public async Task Sead()
+    public static async Task Sead(EffectiveMobileContext context)
     {
         string[] cityDistricts =
         [
@@ -30,7 +30,7 @@ public class SeadDataHelper(EffectiveMobileContext context)
         await context.SaveChangesAsync();
     }
 
-    public async Task ClearDb()
+    public static async Task ClearDb(EffectiveMobileContext context)
     {
         context.Orders.RemoveRange(context.Orders);
         await context.SaveChangesAsync();

@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http.Json;
 using EffectiveMobile.Common.DTOs;
 using EffectiveMobile.Common.EntityModel.Sqlite;
-using EffectiveMobile.Common.EntityModel.Sqlite.Entities;
 using EffectiveMobile.Tests.Integration.Factories;
 using EffectiveMobile.Tests.Integration.Helpers;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +21,6 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         _context = serviceProvider.GetRequiredService<EffectiveMobileContext>();
     }
-
     private readonly HttpClient _client;
     private readonly EffectiveMobileContext _context;
 
@@ -45,8 +43,7 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
         response.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
 
     [Theory]
@@ -67,8 +64,7 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
 
     [Theory]
@@ -89,8 +85,7 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
 
     [Theory]
@@ -111,16 +106,14 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
 
     [Theory]
     [InlineData("GET")]
     public async Task GetFiltered_WithParamsIsValid_ShouldReturnOk(string method)
     {
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.Sead();
+        await SeadDataHelper.Sead(_context);
         var cityDistrict = Uri.EscapeDataString("Ленинский");
         var firstDeliveryDateTime = Uri.EscapeDataString(DateTime.Now.ToString(CultureInfo.InvariantCulture));
 
@@ -131,15 +124,14 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
     
     [Theory]
     [InlineData("GET")]
     public async Task GetFiltered_WithParamsIsDateTimeNotValid_ShouldReturnBadRequest(string method)
     {
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.Sead();
+        await SeadDataHelper.Sead(_context);
         var cityDistrict = Uri.EscapeDataString("Ленинский");
         var firstDeliveryDateTime = Uri.EscapeDataString("2020-2-21 17:33:22");
 
@@ -150,15 +142,14 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
     
     [Theory]
     [InlineData("GET")]
     public async Task GetFiltered_WithParamsIsPathNotValid_ShouldReturnBadRequest(string method)
     {
-        SeadDataHelper helper = new SeadDataHelper(_context);
-        await helper.Sead();
+        await SeadDataHelper.Sead(_context);
         var cityDistrict = Uri.EscapeDataString("Ленинский");
         var firstDeliveryDateTime = Uri.EscapeDataString("2020-2-21 17:33:22");
         var path = Uri.EscapeDataString("/not/valid/directory");
@@ -170,6 +161,6 @@ public class OrdersTest : IClassFixture<CustomWebApplicationFactory>
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        await helper.ClearDb();
+        await SeadDataHelper.ClearDb(_context);
     }
  }
