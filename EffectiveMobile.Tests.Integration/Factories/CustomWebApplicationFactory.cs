@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EffectiveMobile.Common.EntityModel.Sqlite;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace EffectiveMobile.Tests.Integration.Factories;
 
@@ -21,9 +24,16 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             {
                 var sp = services.BuildServiceProvider();
                 var configuration = sp.GetRequiredService<IConfiguration>();
-                var connectionString = configuration.GetConnectionString("TestConnection");
+                var connectionString = configuration.GetConnectionString("Test");
                 options.UseSqlite(connectionString);
             });
+
+            services.RemoveAll<ILoggerProvider>();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
         });
     }
 }
